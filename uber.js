@@ -1,6 +1,7 @@
 /* 
+Assignment: 
 Build an Uber far estimator. Uber has a dynamic pricing algorithm.
-Can you reverse engineer it using this article?
+Can you reverse engineer it using this article? www.ridesharingdriver.com/how-much-does-uber-cost-uber-fare-estimator 
 The user provides the necessary information and you present him with a fare estimate and a breakdown of how it was calculated! */
 
 /* 
@@ -18,10 +19,8 @@ If yourFare < Minimum Fare then, minFare.
 
 // input of user. After you input your destination, the app will display a fare estimate for each service.
 
-const currentCity = process.argv[2]                 // current city
-const destinationCity = process.argv[3]             // destination city
-const drivingMiles = process.argv[4]
-const drivingMinutes = process.argv[5]
+const drivingMiles = process.argv[2]
+const drivingMinutes = process.argv[3]
 
 // calculating the fare estimate of Uber Pool
 
@@ -51,12 +50,19 @@ if (uberXFare < xMinFare) {
 }
 
 // Uber Comfort costs
-const costPerMile = 0.92
-const costPerMinute = 0.38
-const baseFare = 0
-const bookingFee = 3
-const minFare = 10
+const comfortCostPerMile = 0.92
+const comfortCostPerMinute = 0.38
+const comfortBaseFare = 0
+const comfortBookingFee = 3
+const comfortMinFare = 10
 
+let uberComfortFare = comfortBaseFare + (comfortCostPerMinute * drivingMinutes) + (comfortCostPerMile * drivingMiles) + comfortBookingFee
+
+if (uberComfortFare < comfortMinFare) {
+    uberComfortFare = comfortMinFare
+}
+
+/* 
 // Uber XL costs
 const costPerMile = 1.61
 const costPerMinute = 0.31
@@ -83,7 +89,7 @@ const costPerMile = 3.76
 const costPerMinute = 0.75
 const baseFare = 15.75
 const bookingFee = 0
-const minFare = 25.75
+const minFare = 25.75 */
 
 // console.logging the values so we can see some output
 console.log(process.argv);
@@ -92,8 +98,6 @@ console.log(`
 **************
 Your data
 **************
-Current city: ${currentCity}
-Destination: ${destinationCity}
 Miles to drive: ${drivingMiles}
 Minutes to drive: ${drivingMinutes}
     `)
@@ -102,6 +106,7 @@ console.log(`
 **************
 Fare estimates for each service 
 **************
-Uber Pool: ${uberPoolFare}
-Uber X: ${uberXFare}
+Uber Pool: ${Math.round(uberPoolFare)}
+Uber X: ${Math.round(uberXFare)}
+Uber Comfort: ${Math.round(uberComfortFare)}
 `)
