@@ -1,8 +1,9 @@
 /* 
 Assignment: 
 Build an Uber far estimator. Uber has a dynamic pricing algorithm.
-Can you reverse engineer it using this article? www.ridesharingdriver.com/how-much-does-uber-cost-uber-fare-estimator 
-The user provides the necessary information and you present him with a fare estimate and a breakdown of how it was calculated! */
+Can you reverse engineer it using this article? https://www.ridesharingdriver.com/how-much-does-uber-cost-uber-fare-estimator 
+The user provides the necessary information and you present him with a fare estimate and a breakdown of how it was calculated! 
+*/
 
 /* 
 The old fare calculation – Limited use as of 2021
@@ -49,7 +50,7 @@ if (uberXFare < xMinFare) {
     uberXFare = xMinFare
 }
 
-// Uber Comfort costs
+// calculating the fare estimate of Uber Comfort
 const comfortCostPerMile = 0.92
 const comfortCostPerMinute = 0.38
 const comfortBaseFare = 0
@@ -62,34 +63,58 @@ if (uberComfortFare < comfortMinFare) {
     uberComfortFare = comfortMinFare
 }
 
-/* 
-// Uber XL costs
-const costPerMile = 1.61
-const costPerMinute = 0.31
-const baseFare = 1
-const bookingFee = 3
-const minFare = 9
 
-// Uber Select costs
-const costPerMile = 1.9
-const costPerMinute = 0.61
-const baseFare = 5
-const bookingFee = 3
-const minFare = 12
+// calculating the fare estimate of Uber XL
+const xlCostPerMile = 1.61
+const xlCostPerMinute = 0.31
+const xlBaseFare = 1
+const xlBookingFee = 3
+const xlMinFare = 9
 
-// Uber Black costs
-const costPerMile = 2.92
-const costPerMinute = 0.71
-const baseFare = 8.75
-const bookingFee = 0
-const minFare = 15.75
+let uberXLFare = xlBaseFare + (xlCostPerMinute * drivingMinutes) + (xlCostPerMile * drivingMiles) + xlBookingFee
 
-// Black SUV costs
-const costPerMile = 3.76
-const costPerMinute = 0.75
-const baseFare = 15.75
-const bookingFee = 0
-const minFare = 25.75 */
+if (uberXLFare < xlMinFare) {
+    uberXLFare = xlMinFare
+}
+
+// calculating the fare estimate of Uber Select
+const selectCostPerMile = 1.9
+const selectCostPerMinute = 0.61
+const selectBaseFare = 5
+const selectBookingFee = 3
+const selectMinFare = 12
+
+let uberSelectFare = selectBaseFare + (selectCostPerMinute * drivingMinutes) + (selectCostPerMile * drivingMiles) + selectBookingFee
+
+if (uberSelectFare < selectMinFare) {
+    uberSelectFare = selectMinFare
+}
+
+// calculating the fare estimate of Uber Black
+const blackCostPerMile = 2.92
+const blackCostPerMinute = 0.71
+const blackBaseFare = 8.75
+const blackBookingFee = 0
+const blackMinFare = 15.75
+
+let uberBlackFare = blackBaseFare + (blackCostPerMinute * drivingMinutes) + (blackCostPerMile * drivingMiles) + blackBookingFee
+
+if (uberBlackFare < blackMinFare) {
+    uberBlackFare = blackMinFare
+}
+
+// calculating the fare estimate of Uber Black SUV
+const suvCostPerMile = 3.76
+const suvCostPerMinute = 0.75
+const suvBaseFare = 15.75
+const suvBookingFee = 0
+const suvMinFare = 25.75
+
+let uberSuvFare = suvBaseFare + (suvCostPerMinute * drivingMinutes) + (suvCostPerMile * drivingMiles) + suvBookingFee
+
+if (uberSuvFare < suvMinFare) {
+    uberSuvFare = suvMinFare
+}
 
 // console.logging the values so we can see some output
 console.log(process.argv);
@@ -100,7 +125,7 @@ Your data
 **************
 Miles to drive: ${drivingMiles}
 Minutes to drive: ${drivingMinutes}
-    `)
+`)
 
 console.log(`
 **************
@@ -109,4 +134,8 @@ Fare estimates for each service
 Uber Pool: ${Math.round(uberPoolFare)}
 Uber X: ${Math.round(uberXFare)}
 Uber Comfort: ${Math.round(uberComfortFare)}
+Uber XL: ${Math.round(uberXLFare)}
+Uber Select: ${Math.round(uberSelectFare)}
+Uber Black: ${Math.round(uberBlackFare)}
+Uber Black SUV: ${Math.round(uberSuvFare)}
 `)
