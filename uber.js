@@ -23,6 +23,7 @@ If yourFare < Minimum Fare then, minFare.
 const drivingMiles = process.argv[2]
 const drivingMinutes = process.argv[3]
 
+
 // calculating the fare estimate of Uber Pool
 
 const poolCostPerMile = 0.80
@@ -126,6 +127,14 @@ Your data
 Miles to drive: ${drivingMiles}
 Minutes to drive: ${drivingMinutes}
 `)
+
+if (!drivingMiles) {
+    console.log("You forgot to fill in the amount of Miles to drive")
+}
+
+if (!drivingMinutes) {
+    console.log("You forgot to fill in the amount of minutes to drive")
+}
 
 console.log(`
 **************
