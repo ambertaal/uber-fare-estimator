@@ -20,101 +20,71 @@ If yourFare < Minimum Fare then, minFare.
 
 // input of user. After you input your destination, the app will display a fare estimate for each service.
 
-const drivingMiles = process.argv[2]
-const drivingMinutes = process.argv[3]
+const drivingMiles = process.argv[2] // user input 2.3
+const drivingMinutes = process.argv[3] // user input 11
 
+// A
+const rideTypeA = 'Uber Pool'
+const milesFareA = 0.80
+const minuteFareA = 0.28
+const baseFareA = 0
+const bookingFeeA = 2.30
+const minimumFareA = 0
 
-// calculating the fare estimate of Uber Pool
+// B
+const rideTypeB = 'Uber X'
+const milesFareB = 0.80
+const minuteFareB = 0.28
+const baseFareB = 0
+const bookingFeeB = 3
+const minimumFareB = 6.50
 
-const poolCostPerMile = 0.80
-const poolCostPerMinute = 0.28
-const poolBaseFare = 0
-const poolBookingFee = 2.30
-const poolMinFare = 0
+// C
+const rideTypeC = 'Uber Comfort'
+const milesFareC = 0.92
+const minuteFareC = 0.38
+const baseFareC = 0
+const bookingFeeC = 2
+const minimumFareC = 10
 
-let uberPoolFare = poolBaseFare + (poolCostPerMinute * drivingMinutes) + (poolCostPerMile * drivingMiles) + poolBookingFee
+// Getting values back out of functions: return
 
-if (uberPoolFare < poolMinFare) {
-    uberPoolFare = poolMinFare
+function uberPrice(rideType, milesFare, minuteFare, bookingFee, minutes, miles) {
+    // return the result of the calculation
+    return ((milesFare * miles) + (minuteFare * minutes) + bookingFee)
 }
 
-// calculating the fare estimate of Uber X
-const xCostPerMile = 0.80
-const xCostPerMinute = 0.28
-const xBaseFare = 0
-const xBookingFee = 3
-const xMinFare = 6.50
+// A
+// call the function with argument
+// assign the value that is returned to a variable
+const uberA = uberPrice(rideTypeA, milesFareA, minuteFareA, bookingFeeA, drivingMinutes, drivingMiles)
 
-let uberXFare = xBaseFare + (xCostPerMinute * drivingMinutes) + (xCostPerMile * drivingMiles) + xBookingFee
+let uberTotalA = uberA + baseFareA
 
-if (uberXFare < xMinFare) {
-    uberXFare = xMinFare
+if (uberTotalA < minimumFareA) {
+    uberTotalA = minimumFareA
 }
 
-// calculating the fare estimate of Uber Comfort
-const comfortCostPerMile = 0.92
-const comfortCostPerMinute = 0.38
-const comfortBaseFare = 0
-const comfortBookingFee = 3
-const comfortMinFare = 10
+// B
 
-let uberComfortFare = comfortBaseFare + (comfortCostPerMinute * drivingMinutes) + (comfortCostPerMile * drivingMiles) + comfortBookingFee
+const uberB = uberPrice(rideTypeB, milesFareB, minuteFareB, bookingFeeB, drivingMinutes, drivingMiles, function () {
+});
 
-if (uberComfortFare < comfortMinFare) {
-    uberComfortFare = comfortMinFare
+let uberTotalB = uberB + baseFareA
+
+if (uberTotalB < minimumFareB) {
+    uberTotalB = minimumFareB
 }
 
+// C
 
-// calculating the fare estimate of Uber XL
-const xlCostPerMile = 1.61
-const xlCostPerMinute = 0.31
-const xlBaseFare = 1
-const xlBookingFee = 3
-const xlMinFare = 9
+const uberC = uberPrice(rideTypeC, milesFareC, minuteFareC, bookingFeeC, drivingMinutes, drivingMiles, function () {
+});
 
-let uberXLFare = xlBaseFare + (xlCostPerMinute * drivingMinutes) + (xlCostPerMile * drivingMiles) + xlBookingFee
+let uberTotalC = uberC + baseFareA
 
-if (uberXLFare < xlMinFare) {
-    uberXLFare = xlMinFare
-}
-
-// calculating the fare estimate of Uber Select
-const selectCostPerMile = 1.9
-const selectCostPerMinute = 0.61
-const selectBaseFare = 5
-const selectBookingFee = 3
-const selectMinFare = 12
-
-let uberSelectFare = selectBaseFare + (selectCostPerMinute * drivingMinutes) + (selectCostPerMile * drivingMiles) + selectBookingFee
-
-if (uberSelectFare < selectMinFare) {
-    uberSelectFare = selectMinFare
-}
-
-// calculating the fare estimate of Uber Black
-const blackCostPerMile = 2.92
-const blackCostPerMinute = 0.71
-const blackBaseFare = 8.75
-const blackBookingFee = 0
-const blackMinFare = 15.75
-
-let uberBlackFare = blackBaseFare + (blackCostPerMinute * drivingMinutes) + (blackCostPerMile * drivingMiles) + blackBookingFee
-
-if (uberBlackFare < blackMinFare) {
-    uberBlackFare = blackMinFare
-}
-
-// calculating the fare estimate of Uber Black SUV
-const suvCostPerMile = 3.76
-const suvCostPerMinute = 0.75
-const suvBaseFare = 15.75
-const suvBookingFee = 0
-const suvMinFare = 25.75
-
-let uberSuvFare = suvBaseFare + (suvCostPerMinute * drivingMinutes) + (suvCostPerMile * drivingMiles) + suvBookingFee
-
-if (uberSuvFare < suvMinFare) {
-    uberSuvFare = suvMinFare
+if (uberTotalC < minimumFareC) {
+    uberTotalC = minimumFareC
 }
 
 // console.logging the values so we can see some output
@@ -137,14 +107,38 @@ if (!drivingMinutes) {
 }
 
 console.log(`
-**************
-Fare estimates for each service 
-**************
-Uber Pool: ${Math.round(uberPoolFare)}
-Uber X: ${Math.round(uberXFare)}
-Uber Comfort: ${Math.round(uberComfortFare)}
-Uber XL: ${Math.round(uberXLFare)}
-Uber Select: ${Math.round(uberSelectFare)}
-Uber Black: ${Math.round(uberBlackFare)}
-Uber Black SUV: ${Math.round(uberSuvFare)}
-`)
+********************************
+Fare estimates for ${rideTypeA}
+********************************
+Base Fare: ${'$' + baseFareA}
+Mile fare: ${drivingMiles + ' miles:' + ' ' + '$' + milesFareA}
+Minute fare: ${drivingMinutes + ' minutes:' + ' ' + '$' + minuteFareA}
+Minimum fare: ${'$' + minimumFareA}
+Booking fee: ${'$' + bookingFeeA}
+TOTAL: ${'$' + Math.round(uberTotalA)}
+    `)
+
+console.log(`
+********************************
+Fare estimates for ${rideTypeB}
+********************************
+Base Fare: ${'$' + baseFareB}
+Mile fare: ${drivingMiles + ' miles:' + ' ' + '$' + milesFareB}
+Minute fare: ${drivingMinutes + ' minutes:' + ' ' + '$' + minuteFareB}
+Minimum fare: ${'$' + minimumFareB}
+Booking fee: ${'$' + bookingFeeB}
+TOTAL: ${'$' + Math.round(uberTotalB)}
+    `)
+
+
+console.log(`
+********************************
+Fare estimates for ${rideTypeC}
+********************************
+Base Fare: ${'$' + baseFareC}
+Mile fare: ${drivingMiles + ' miles:' + ' ' + '$' + milesFareC}
+Minute fare: ${drivingMinutes + ' minutes:' + ' ' + '$' + minuteFareC}
+Minimum fare: ${'$' + minimumFareC}
+Booking fee: ${'$' + bookingFeeC}
+TOTAL: ${'$' + Math.round(uberTotalC)}
+    `)
