@@ -23,7 +23,7 @@ If yourFare < Minimum Fare then, minFare.
 const drivingMiles = process.argv[2] // user input 2.3
 const drivingMinutes = process.argv[3] // user input 11
 
-// A
+// Rates A
 const rideTypeA = 'Uber Pool'
 const milesFareA = 0.80
 const minuteFareA = 0.28
@@ -31,7 +31,7 @@ const baseFareA = 0
 const bookingFeeA = 2.30
 const minimumFareA = 0
 
-// B
+// Rates B
 const rideTypeB = 'Uber X'
 const milesFareB = 0.80
 const minuteFareB = 0.28
@@ -39,7 +39,7 @@ const baseFareB = 0
 const bookingFeeB = 3
 const minimumFareB = 6.50
 
-// C
+// Rates C
 const rideTypeC = 'Uber Comfort'
 const milesFareC = 0.92
 const minuteFareC = 0.38
@@ -47,45 +47,33 @@ const baseFareC = 0
 const bookingFeeC = 2
 const minimumFareC = 10
 
-// Getting values back out of functions: return
+// Function with parameters
 
-function uberPrice(rideType, milesFare, minuteFare, bookingFee, minutes, miles) {
+function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, bookingFee, minutes, miles) {
+    let result = (baseFare + (milesFare * miles) + (minuteFare * minutes) + bookingFee);
+    if (result < minimumFare) {
+        result = minimumFare;
+    } else {
+        result = result;
+    }
     // return the result of the calculation
-    return ((milesFare * miles) + (minuteFare * minutes) + bookingFee)
+    return result;
 }
 
 // A
-// call the function with argument
+// call the function with arguments
 // assign the value that is returned to a variable
-const uberA = uberPrice(rideTypeA, milesFareA, minuteFareA, bookingFeeA, drivingMinutes, drivingMiles)
-
-let uberTotalA = uberA + baseFareA
-
-if (uberTotalA < minimumFareA) {
-    uberTotalA = minimumFareA
-}
+const priceA = uberPrice(rideTypeA, minimumFareA, baseFareA, milesFareA, minuteFareA, bookingFeeA, drivingMinutes, drivingMiles)
 
 // B
-
-const uberB = uberPrice(rideTypeB, milesFareB, minuteFareB, bookingFeeB, drivingMinutes, drivingMiles, function () {
-});
-
-let uberTotalB = uberB + baseFareA
-
-if (uberTotalB < minimumFareB) {
-    uberTotalB = minimumFareB
-}
+// call the function with arguments
+// assign the value that is returned to a variable
+const priceB = uberPrice(rideTypeB, minimumFareB, baseFareB, milesFareB, minuteFareB, bookingFeeB, drivingMinutes, drivingMiles)
 
 // C
-
-const uberC = uberPrice(rideTypeC, milesFareC, minuteFareC, bookingFeeC, drivingMinutes, drivingMiles, function () {
-});
-
-let uberTotalC = uberC + baseFareA
-
-if (uberTotalC < minimumFareC) {
-    uberTotalC = minimumFareC
-}
+// call the function with arguments
+// assign the value that is returned to a variable
+const priceC = uberPrice(rideTypeC, minimumFareC, baseFareC, milesFareC, minuteFareC, bookingFeeC, drivingMinutes, drivingMiles)
 
 // console.logging the values so we can see some output
 console.log(process.argv);
@@ -115,7 +103,7 @@ Mile fare: ${drivingMiles + ' miles:' + ' ' + '$' + milesFareA}
 Minute fare: ${drivingMinutes + ' minutes:' + ' ' + '$' + minuteFareA}
 Minimum fare: ${'$' + minimumFareA}
 Booking fee: ${'$' + bookingFeeA}
-TOTAL: ${'$' + Math.round(uberTotalA)}
+TOTAL: ${'$' + Math.round(priceA)}
     `)
 
 console.log(`
@@ -127,7 +115,7 @@ Mile fare: ${drivingMiles + ' miles:' + ' ' + '$' + milesFareB}
 Minute fare: ${drivingMinutes + ' minutes:' + ' ' + '$' + minuteFareB}
 Minimum fare: ${'$' + minimumFareB}
 Booking fee: ${'$' + bookingFeeB}
-TOTAL: ${'$' + Math.round(uberTotalB)}
+TOTAL: ${'$' + Math.round(priceB)}
     `)
 
 
@@ -140,5 +128,5 @@ Mile fare: ${drivingMiles + ' miles:' + ' ' + '$' + milesFareC}
 Minute fare: ${drivingMinutes + ' minutes:' + ' ' + '$' + minuteFareC}
 Minimum fare: ${'$' + minimumFareC}
 Booking fee: ${'$' + bookingFeeC}
-TOTAL: ${'$' + Math.round(uberTotalC)}
+TOTAL: ${'$' + Math.round(priceC)}
     `)
