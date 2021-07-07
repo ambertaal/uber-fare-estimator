@@ -47,7 +47,8 @@ const baseFareC = 0
 const bookingFeeC = 2
 const minimumFareC = 10
 
-// Function with parameters
+// Declaring the function with parameter list
+// Including if statement
 
 function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, bookingFee, minutes, miles) {
     let result = (baseFare + (milesFare * miles) + (minuteFare * minutes) + bookingFee);
@@ -60,20 +61,33 @@ function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, booki
     return result;
 }
 
+const uberReceipt = function (rideType, minimumFare, baseFare, milesFare, minuteFare, bookingFee, minutes, miles) {
+    let receipt = "Fare estimates for" + " " + rideType
+        + "Base Fare:" + " " + "$" + baseFare
+        + "Mile fare:" + " " + "$" + milesFare
+    return receipt;
+}
+
+// Make the function reusable
+// Call the function multiple times
+
 // A
-// call the function with arguments
-// assign the value that is returned to a variable
+// Call the function with arguments
+// Assign the value that is returned to a variable
 const priceA = uberPrice(rideTypeA, minimumFareA, baseFareA, milesFareA, minuteFareA, bookingFeeA, drivingMinutes, drivingMiles)
 
+
 // B
-// call the function with arguments
-// assign the value that is returned to a variable
+// Call the function with arguments
+// Assign the value that is returned to a variable
 const priceB = uberPrice(rideTypeB, minimumFareB, baseFareB, milesFareB, minuteFareB, bookingFeeB, drivingMinutes, drivingMiles)
 
+
 // C
-// call the function with arguments
-// assign the value that is returned to a variable
+// Call the function with arguments
+// Assign the value that is returned to a variable
 const priceC = uberPrice(rideTypeC, minimumFareC, baseFareC, milesFareC, minuteFareC, bookingFeeC, drivingMinutes, drivingMiles)
+
 
 // console.logging the values so we can see some output
 console.log(process.argv);
@@ -94,39 +108,8 @@ if (!drivingMinutes) {
     console.log("You forgot to fill in the amount of minutes to drive")
 }
 
-console.log(`
-********************************
-Fare estimates for ${rideTypeA}
-********************************
-Base Fare: ${'$' + baseFareA}
-Mile fare: ${drivingMiles + ' miles:' + ' ' + '$' + milesFareA}
-Minute fare: ${drivingMinutes + ' minutes:' + ' ' + '$' + minuteFareA}
-Minimum fare: ${'$' + minimumFareA}
-Booking fee: ${'$' + bookingFeeA}
-TOTAL: ${'$' + Math.round(priceA)}
-    `)
+console.log(uberReceipt(rideTypeA, minimumFareA, baseFareA, milesFareA, minuteFareA, bookingFeeA, drivingMinutes, drivingMiles));
 
-console.log(`
-********************************
-Fare estimates for ${rideTypeB}
-********************************
-Base Fare: ${'$' + baseFareB}
-Mile fare: ${drivingMiles + ' miles:' + ' ' + '$' + milesFareB}
-Minute fare: ${drivingMinutes + ' minutes:' + ' ' + '$' + minuteFareB}
-Minimum fare: ${'$' + minimumFareB}
-Booking fee: ${'$' + bookingFeeB}
-TOTAL: ${'$' + Math.round(priceB)}
-    `)
+console.log(uberReceipt(rideTypeB, minimumFareB, baseFareB, milesFareB, minuteFareB, bookingFeeB, drivingMinutes, drivingMiles));
 
-
-console.log(`
-********************************
-Fare estimates for ${rideTypeC}
-********************************
-Base Fare: ${'$' + baseFareC}
-Mile fare: ${drivingMiles + ' miles:' + ' ' + '$' + milesFareC}
-Minute fare: ${drivingMinutes + ' minutes:' + ' ' + '$' + minuteFareC}
-Minimum fare: ${'$' + minimumFareC}
-Booking fee: ${'$' + bookingFeeC}
-TOTAL: ${'$' + Math.round(priceC)}
-    `)
+console.log(uberReceipt(rideTypeC, minimumFareC, baseFareC, milesFareC, minuteFareC, bookingFeeC, drivingMinutes, drivingMiles));
