@@ -65,15 +65,15 @@ function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, booki
     **************
     Your data
     **************
-    Miles to drive: ${drivingMiles + ' ' + 'miles'} 
-    Minutes to drive: ${drivingMinutes + ' ' + 'minutes'}
+    Miles to drive:     ${drivingMiles + ' ' + 'miles'} 
+    Minutes to drive:   ${drivingMinutes + ' ' + 'minutes'}
 
-    Ride type: ${rideType}
-    Mile fare: ${milesFare}
-    Minute fare ${minuteFare}
-    Minimum fare: ${'$' + minimumFare}
-    Booking fee: ${'$' + bookingFee}
-    TOTAL: ${'$' + Math.round(result)}
+    Ride type:          ${rideType}
+    Mile fare:          ${'$ ' + milesFare}
+    Minute fare         ${'$ ' + minuteFare}
+    Minimum fare:       ${'$ ' + minimumFare}
+    Booking fee:        ${'$ ' + bookingFee}
+    TOTAL:              ${'$ ' + Math.round(result)}
     `)
     // return the result of the calculation
     return result;
