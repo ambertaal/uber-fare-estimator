@@ -23,6 +23,9 @@ If yourFare < Minimum Fare then, minFare.
 const drivingMiles = process.argv[2] // user input 2.3
 const drivingMinutes = process.argv[3] // user input 11
 
+// console.logging the values so we can see some output
+console.log(process.argv);
+
 // Rates A
 const rideTypeA = 'Uber Pool'
 const milesFareA = 0.80
@@ -52,20 +55,28 @@ const minimumFareC = 10
 
 function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, bookingFee, minutes, miles) {
     let result = (baseFare + (milesFare * miles) + (minuteFare * minutes) + bookingFee);
+
     if (result < minimumFare) {
         result = minimumFare;
     } else {
         result = result;
     }
+    console.log(`
+    **************
+    Your data
+    **************
+    Miles to drive: ${drivingMiles + ' ' + 'miles'} 
+    Minutes to drive: ${drivingMinutes + ' ' + 'minutes'}
+
+    Ride type: ${rideType}
+    Mile fare: ${milesFare}
+    Minute fare ${minuteFare}
+    Minimum fare: ${'$' + minimumFare}
+    Booking fee: ${'$' + bookingFee}
+    TOTAL: ${'$' + Math.round(result)}
+    `)
     // return the result of the calculation
     return result;
-}
-
-const uberReceipt = function (rideType, minimumFare, baseFare, milesFare, minuteFare, bookingFee, minutes, miles) {
-    let receipt = "Fare estimates for" + " " + rideType
-        + "Base Fare:" + " " + "$" + baseFare
-        + "Mile fare:" + " " + "$" + milesFare
-    return receipt;
 }
 
 // Make the function reusable
@@ -75,7 +86,6 @@ const uberReceipt = function (rideType, minimumFare, baseFare, milesFare, minute
 // Call the function with arguments
 // Assign the value that is returned to a variable
 const priceA = uberPrice(rideTypeA, minimumFareA, baseFareA, milesFareA, minuteFareA, bookingFeeA, drivingMinutes, drivingMiles)
-
 
 // B
 // Call the function with arguments
@@ -88,28 +98,10 @@ const priceB = uberPrice(rideTypeB, minimumFareB, baseFareB, milesFareB, minuteF
 // Assign the value that is returned to a variable
 const priceC = uberPrice(rideTypeC, minimumFareC, baseFareC, milesFareC, minuteFareC, bookingFeeC, drivingMinutes, drivingMiles)
 
-
-// console.logging the values so we can see some output
-console.log(process.argv);
-
-console.log(`
-**************
-Your data
-**************
-Miles to drive: ${drivingMiles}
-Minutes to drive: ${drivingMinutes}
-`)
-
 if (!drivingMiles) {
-    console.log("You forgot to fill in the amount of Miles to drive")
+    console.log("Error: You forgot to fill in the amount of Miles to drive")
 }
 
 if (!drivingMinutes) {
-    console.log("You forgot to fill in the amount of minutes to drive")
+    console.log("Error: You forgot to fill in the amount of minutes to drive")
 }
-
-console.log(uberReceipt(rideTypeA, minimumFareA, baseFareA, milesFareA, minuteFareA, bookingFeeA, drivingMinutes, drivingMiles));
-
-console.log(uberReceipt(rideTypeB, minimumFareB, baseFareB, milesFareB, minuteFareB, bookingFeeB, drivingMinutes, drivingMiles));
-
-console.log(uberReceipt(rideTypeC, minimumFareC, baseFareC, milesFareC, minuteFareC, bookingFeeC, drivingMinutes, drivingMiles));
