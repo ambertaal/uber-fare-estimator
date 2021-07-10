@@ -26,29 +26,34 @@ const drivingMinutes = process.argv[3] // user input 11
 // console.logging the values so we can see some output
 console.log(process.argv);
 
-// Rates A
-const rideTypeA = 'Uber Pool'
-const milesFareA = 0.80
-const minuteFareA = 0.28
-const baseFareA = 0
-const bookingFeeA = 2.30
-const minimumFareA = 0
+// Rates 
 
-// Rates B
-const rideTypeB = 'Uber X'
-const milesFareB = 0.80
-const minuteFareB = 0.28
-const baseFareB = 0
-const bookingFeeB = 3
-const minimumFareB = 6.50
+const a = {
+    rideType: 'Uber Pool',
+    milesFare: 0.80,
+    minuteFare: 0.28,
+    baseFare: 0,
+    bookingFee: 2.30,
+    minimumFare: 0
+};
 
-// Rates C
-const rideTypeC = 'Uber Comfort'
-const milesFareC = 0.92
-const minuteFareC = 0.38
-const baseFareC = 0
-const bookingFeeC = 2
-const minimumFareC = 10
+const b = {
+    rideType: 'Uber X',
+    milesFare: 0.80,
+    minuteFare: 0.28,
+    baseFare: 0,
+    bookingFee: 3,
+    minimumFare: 6.50
+};
+
+const c = {
+    rideType: 'Uber Comfort',
+    milesFare: 0.92,
+    minuteFare: 0.38,
+    baseFare: 0,
+    bookingFee: 2,
+    minimumFare: 10
+}
 
 // Declaring the function with parameter list
 // Including if statement
@@ -61,20 +66,27 @@ function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, booki
     } else {
         result = result;
     }
+
     console.log(`
-    **************
-    Your data
-    **************
+    ******************
+    Your Uber receipt
+    ******************
+    Ride type:          ${rideType}
+
     Miles to drive:     ${drivingMiles + ' ' + 'miles'} 
     Minutes to drive:   ${drivingMinutes + ' ' + 'minutes'}
-
-    Ride type:          ${rideType}
     Mile fare:          ${'$ ' + milesFare}
     Minute fare         ${'$ ' + minuteFare}
+    
+    Total Mile fare:    ${'$ ' + Math.round(milesFare * drivingMiles) + ' (Miles to drive x Miles fare)'}
+    Total Minute fare   ${'$ ' + Math.round(minuteFare * drivingMinutes) + ' (Minutes to drive x Minute fare)'}
+    
     Minimum fare:       ${'$ ' + minimumFare}
     Booking fee:        ${'$ ' + bookingFee}
+    
     TOTAL:              ${'$ ' + Math.round(result)}
     `)
+
     // return the result of the calculation
     return result;
 }
@@ -85,18 +97,18 @@ function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, booki
 // A
 // Call the function with arguments
 // Assign the value that is returned to a variable
-const priceA = uberPrice(rideTypeA, minimumFareA, baseFareA, milesFareA, minuteFareA, bookingFeeA, drivingMinutes, drivingMiles)
+const priceA = uberPrice(a.rideType, a.minimumFare, a.baseFare, a.milesFare, a.minuteFare, a.bookingFee, drivingMinutes, drivingMiles)
 
 // B
 // Call the function with arguments
 // Assign the value that is returned to a variable
-const priceB = uberPrice(rideTypeB, minimumFareB, baseFareB, milesFareB, minuteFareB, bookingFeeB, drivingMinutes, drivingMiles)
+const priceB = uberPrice(b.rideType, b.minimumFare, b.baseFare, b.milesFare, b.minuteFare, b.bookingFee, drivingMinutes, drivingMiles)
 
 
 // C
 // Call the function with arguments
 // Assign the value that is returned to a variable
-const priceC = uberPrice(rideTypeC, minimumFareC, baseFareC, milesFareC, minuteFareC, bookingFeeC, drivingMinutes, drivingMiles)
+const priceC = uberPrice(c.rideType, c.minimumFare, c.baseFare, c.milesFare, c.minuteFare, c.bookingFee, drivingMinutes, drivingMiles)
 
 if (!drivingMiles) {
     console.log("Error: You forgot to fill in the amount of Miles to drive")
