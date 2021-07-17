@@ -18,8 +18,31 @@ If yourFare < Minimum Fare then, minFare.
 // input of user. After you input your destination, the app will display a fare estimate for each service.
 var drivingMiles = Number(process.argv[2]); // user input 2.3
 var drivingMinutes = Number(process.argv[3]); // user input 11
-// console.logging the values so we can see some output
-console.log(process.argv);
+// English error messages
+var errorMessage = {
+    forgotMiles: 'Error: You forgot to fill in the amount of Miles to drive',
+    forgotMinutes: 'Error: You forgot to fill in the amount of minutes to drive',
+    forgotMilesMinutes: 'Error: You forgot to fill in the amount of Miles and minutes!',
+    forgotNothing: 'Calculating!'
+};
+function checkInput(minutes, miles) {
+    if (!drivingMinutes && !drivingMiles) {
+        console.log(errorMessage.forgotMilesMinutes);
+        process.exit(1);
+    }
+    else if (!drivingMiles) {
+        console.log(errorMessage.forgotMiles);
+        process.exit(1);
+    }
+    else if (!drivingMinutes) {
+        console.log(errorMessage.forgotMinutes);
+        process.exit(1);
+    }
+    else {
+        console.log(errorMessage.forgotNothing);
+    }
+}
+checkInput(drivingMiles, drivingMinutes);
 var a = {
     rideType: 'Uber Pool',
     milesFare: 0.80,
@@ -72,9 +95,3 @@ var priceB = uberPrice(b, drivingMinutes, drivingMiles);
 // Call the function with arguments
 // Assign the value that is returned to a variable
 var priceC = uberPrice(c, drivingMinutes, drivingMiles);
-if (!drivingMiles) {
-    console.log("Error: You forgot to fill in the amount of Miles to drive");
-}
-if (!drivingMinutes) {
-    console.log("Error: You forgot to fill in the amount of minutes to drive");
-}

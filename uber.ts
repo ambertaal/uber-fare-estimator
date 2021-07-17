@@ -23,8 +23,43 @@ If yourFare < Minimum Fare then, minFare.
 const drivingMiles = Number(process.argv[2]) // user input 2.3
 const drivingMinutes = Number(process.argv[3]) // user input 11
 
+// Exit process if no input for miles or minutes
+
+interface ErrorMessage {
+    forgotMiles: string;
+    forgotMinutes: string;
+    forgotMilesMinutes: string;
+    forgotNothing: string;
+}
+
+// English error messages
+
+const errorMessage = {
+    forgotMiles: 'Error: You forgot to fill in the amount of Miles to drive',
+    forgotMinutes: 'Error: You forgot to fill in the amount of minutes to drive',
+    forgotMilesMinutes: 'Error: You forgot to fill in the amount of Miles and minutes!',
+    forgotNothing: 'Calculating!'
+}
+
+function checkInput(minutes: number, miles: number) {
+    if (!drivingMinutes && !drivingMiles) {
+        console.log(errorMessage.forgotMilesMinutes)
+        process.exit(1)
+    } else if (!drivingMiles) {
+        console.log(errorMessage.forgotMiles);
+        process.exit(1)
+    } else if (!drivingMinutes) {
+        console.log(errorMessage.forgotMinutes);
+        process.exit(1)
+    } else {
+        console.log(errorMessage.forgotNothing);
+    }
+}
+
+checkInput(drivingMiles, drivingMinutes)
+
 // console.logging the values so we can see some output
-console.log(process.argv);
+// console.log(process.argv);
 
 // Rates and object types
 
@@ -119,11 +154,5 @@ const priceB = uberPrice(b, drivingMinutes, drivingMiles)
 // Assign the value that is returned to a variable
 const priceC = uberPrice(c, drivingMinutes, drivingMiles)
 
-if (!drivingMiles) {
-    console.log("Error: You forgot to fill in the amount of Miles to drive")
-}
 
-if (!drivingMinutes) {
-    console.log("Error: You forgot to fill in the amount of minutes to drive")
-}
 
