@@ -32,30 +32,40 @@ function checkInput(minutes, miles) {
     }
 }
 checkInput(drivingMiles, drivingMinutes);
-var a = {
-    rideType: 'Uber Pool',
-    milesFare: 0.80,
-    minuteFare: 0.28,
-    baseFare: 0,
-    bookingFee: 2.30,
-    minimumFare: 0
-};
-var b = {
-    rideType: 'Uber X',
-    milesFare: 0.80,
-    minuteFare: 0.28,
-    baseFare: 0,
-    bookingFee: 3,
-    minimumFare: 6.50
-};
-var c = {
-    rideType: 'Uber Comfort',
-    milesFare: 0.92,
-    minuteFare: 0.38,
-    baseFare: 0,
-    bookingFee: 2,
-    minimumFare: 10
-};
+var uberModels = [
+    {
+        rideType: 'Uber Pool',
+        milesFare: 0.80,
+        minuteFare: 0.28,
+        baseFare: 0,
+        bookingFee: 2.30,
+        minimumFare: 0
+    },
+    {
+        rideType: 'Uber X',
+        milesFare: 0.80,
+        minuteFare: 0.28,
+        baseFare: 0,
+        bookingFee: 3,
+        minimumFare: 6.50
+    },
+    {
+        rideType: 'Uber Comfort',
+        milesFare: 0.92,
+        minuteFare: 0.38,
+        baseFare: 0,
+        bookingFee: 2,
+        minimumFare: 10
+    },
+    {
+        rideType: 'Uber Black',
+        milesFare: 2.92,
+        minuteFare: 0.71,
+        baseFare: 8.75,
+        bookingFee: 0,
+        minimumFare: 15.75
+    },
+];
 // The uberPrice function calculates the estimated price via the new formula and prints the Uber receipt.
 function uberPrice(uberModel, minutes, miles) {
     var result = uberModel.baseFare + (uberModel.milesFare * miles) + (uberModel.minuteFare * minutes) + uberModel.bookingFee;
@@ -66,6 +76,7 @@ function uberPrice(uberModel, minutes, miles) {
     return result;
 }
 // Prints the Uber receipts per Uber Model.
-uberPrice(a, drivingMinutes, drivingMiles);
-uberPrice(b, drivingMinutes, drivingMiles);
-uberPrice(c, drivingMinutes, drivingMiles);
+for (var _i = 0, uberModels_1 = uberModels; _i < uberModels_1.length; _i++) {
+    var uberModel = uberModels_1[_i];
+    uberPrice(uberModel, drivingMinutes, drivingMiles);
+}

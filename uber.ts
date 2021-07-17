@@ -44,32 +44,40 @@ interface UberModel {
     minimumFare: number;
 }
 
-const a: UberModel = {
-    rideType: 'Uber Pool',
-    milesFare: 0.80,
-    minuteFare: 0.28,
-    baseFare: 0,
-    bookingFee: 2.30,
-    minimumFare: 0
-};
-
-const b: UberModel = {
-    rideType: 'Uber X',
-    milesFare: 0.80,
-    minuteFare: 0.28,
-    baseFare: 0,
-    bookingFee: 3,
-    minimumFare: 6.50
-};
-
-const c: UberModel = {
-    rideType: 'Uber Comfort',
-    milesFare: 0.92,
-    minuteFare: 0.38,
-    baseFare: 0,
-    bookingFee: 2,
-    minimumFare: 10
-}
+const uberModels: Array<UberModel> = [
+    {
+        rideType: 'Uber Pool',
+        milesFare: 0.80,
+        minuteFare: 0.28,
+        baseFare: 0,
+        bookingFee: 2.30,
+        minimumFare: 0
+    },
+    {
+        rideType: 'Uber X',
+        milesFare: 0.80,
+        minuteFare: 0.28,
+        baseFare: 0,
+        bookingFee: 3,
+        minimumFare: 6.50
+    },
+    {
+        rideType: 'Uber Comfort',
+        milesFare: 0.92,
+        minuteFare: 0.38,
+        baseFare: 0,
+        bookingFee: 2,
+        minimumFare: 10
+    },
+    {
+        rideType: 'Uber Black',
+        milesFare: 2.92,
+        minuteFare: 0.71,
+        baseFare: 8.75,
+        bookingFee: 0,
+        minimumFare: 15.75
+    },
+]
 
 // The uberPrice function calculates the estimated price via the new formula and prints the Uber receipt.
 function uberPrice(uberModel: UberModel, minutes: number, miles: number) {
@@ -103,6 +111,6 @@ function uberPrice(uberModel: UberModel, minutes: number, miles: number) {
 }
 
 // Prints the Uber receipts per Uber Model.
-uberPrice(a, drivingMinutes, drivingMiles)
-uberPrice(b, drivingMinutes, drivingMiles)
-uberPrice(c, drivingMinutes, drivingMiles)
+for (const uberModel of uberModels) {
+    uberPrice(uberModel, drivingMinutes, drivingMiles)
+}
