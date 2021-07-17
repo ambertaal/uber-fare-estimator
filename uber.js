@@ -16,8 +16,8 @@ Base Fare + (Cost per minute * time in ride) + (Cost per mile * ride distance) +
 If yourFare < Minimum Fare then, minFare.
 */
 // input of user. After you input your destination, the app will display a fare estimate for each service.
-var drivingMiles = process.argv[2]; // user input 2.3
-var drivingMinutes = process.argv[3]; // user input 11
+var drivingMiles = Number(process.argv[2]); // user input 2.3
+var drivingMinutes = Number(process.argv[3]); // user input 11
 // console.logging the values so we can see some output
 console.log(process.argv);
 var a = {

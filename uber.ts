@@ -20,8 +20,8 @@ If yourFare < Minimum Fare then, minFare.
 
 // input of user. After you input your destination, the app will display a fare estimate for each service.
 
-const drivingMiles = process.argv[2] // user input 2.3
-const drivingMinutes = process.argv[3] // user input 11
+const drivingMiles = Number(process.argv[2]) // user input 2.3
+const drivingMinutes = Number(process.argv[3]) // user input 11
 
 // console.logging the values so we can see some output
 console.log(process.argv);
@@ -67,7 +67,7 @@ const c: UberModel = {
 // Declaring the function with parameter list
 // Including if statement
 
-function uberPrice(uberModel: UberModel, minutes, miles) {
+function uberPrice(uberModel: UberModel, minutes: number, miles: number) {
     let result = (uberModel.baseFare + (uberModel.milesFare * miles) + (uberModel.minuteFare * minutes) + uberModel.bookingFee);
 
     if (result < uberModel.minimumFare) {
@@ -126,3 +126,4 @@ if (!drivingMiles) {
 if (!drivingMinutes) {
     console.log("Error: You forgot to fill in the amount of minutes to drive")
 }
+
