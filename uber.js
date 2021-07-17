@@ -47,15 +47,15 @@ var c = {
 };
 // Declaring the function with parameter list
 // Including if statement
-function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, bookingFee, minutes, miles) {
-    var result = (baseFare + (milesFare * miles) + (minuteFare * minutes) + bookingFee);
-    if (result < minimumFare) {
-        result = minimumFare;
+function uberPrice(uberModel, minutes, miles) {
+    var result = (uberModel.baseFare + (uberModel.milesFare * miles) + (uberModel.minuteFare * minutes) + uberModel.bookingFee);
+    if (result < uberModel.minimumFare) {
+        result = uberModel.minimumFare;
     }
     else {
         result = result;
     }
-    console.log("\n    ******************\n    Your Uber receipt\n    ******************\n    Ride type:          " + rideType + "\n\n    Miles to drive:     " + (miles + ' ' + 'miles') + " \n    Minutes to drive:   " + (minutes + ' ' + 'minutes') + "\n    Mile fare:          " + ('$ ' + milesFare) + "\n    Minute fare         " + ('$ ' + minuteFare) + "\n    \n    Total Mile fare:    " + ('$ ' + Math.round(milesFare * miles) + ' (Miles to drive x Miles fare)') + "\n    Total Minute fare   " + ('$ ' + Math.round(minuteFare * minutes) + ' (Minutes to drive x Minute fare)') + "\n    \n    Minimum fare:       " + ('$ ' + minimumFare) + "\n    Booking fee:        " + ('$ ' + bookingFee) + "\n    \n    TOTAL:              " + ('$ ' + Math.round(result)) + "\n    ");
+    console.log("\n    ******************\n    Your Uber receipt\n    ******************\n    Ride type:          " + uberModel.rideType + "\n\n    Miles to drive:     " + (miles + ' ' + 'miles') + " \n    Minutes to drive:   " + (minutes + ' ' + 'minutes') + "\n    Mile fare:          " + ('$ ' + uberModel.milesFare) + "\n    Minute fare         " + ('$ ' + uberModel.minuteFare) + "\n    \n    Total Mile fare:    " + ('$ ' + Math.round(uberModel.milesFare * miles) + ' (Miles to drive x Miles fare)') + "\n    Total Minute fare   " + ('$ ' + Math.round(uberModel.minuteFare * minutes) + ' (Minutes to drive x Minute fare)') + "\n    \n    Minimum fare:       " + ('$ ' + uberModel.minimumFare) + "\n    Booking fee:        " + ('$ ' + uberModel.bookingFee) + "\n    \n    TOTAL:              " + ('$ ' + Math.round(result)) + "\n    ");
     // return the result of the calculation
     return result;
 }
@@ -64,15 +64,15 @@ function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, booki
 // A
 // Call the function with arguments
 // Assign the value that is returned to a variable
-var priceA = uberPrice(a.rideType, a.minimumFare, a.baseFare, a.milesFare, a.minuteFare, a.bookingFee, drivingMinutes, drivingMiles);
+var priceA = uberPrice(a, drivingMinutes, drivingMiles);
 // B
 // Call the function with arguments
 // Assign the value that is returned to a variable
-var priceB = uberPrice(b.rideType, b.minimumFare, b.baseFare, b.milesFare, b.minuteFare, b.bookingFee, drivingMinutes, drivingMiles);
+var priceB = uberPrice(b, drivingMinutes, drivingMiles);
 // C
 // Call the function with arguments
 // Assign the value that is returned to a variable
-var priceC = uberPrice(c.rideType, c.minimumFare, c.baseFare, c.milesFare, c.minuteFare, c.bookingFee, drivingMinutes, drivingMiles);
+var priceC = uberPrice(c, drivingMinutes, drivingMiles);
 if (!drivingMiles) {
     console.log("Error: You forgot to fill in the amount of Miles to drive");
 }

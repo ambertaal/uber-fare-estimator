@@ -58,11 +58,11 @@ const c = {
 // Declaring the function with parameter list
 // Including if statement
 
-function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, bookingFee, minutes, miles) {
-    let result = (baseFare + (milesFare * miles) + (minuteFare * minutes) + bookingFee);
+function uberPrice(uberModel, minutes, miles) {
+    let result = (uberModel.baseFare + (uberModel.milesFare * miles) + (uberModel.minuteFare * minutes) + uberModel.bookingFee);
 
-    if (result < minimumFare) {
-        result = minimumFare;
+    if (result < uberModel.minimumFare) {
+        result = uberModel.minimumFare;
     } else {
         result = result;
     }
@@ -71,18 +71,18 @@ function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, booki
     ******************
     Your Uber receipt
     ******************
-    Ride type:          ${rideType}
+    Ride type:          ${uberModel.rideType}
 
     Miles to drive:     ${miles + ' ' + 'miles'} 
     Minutes to drive:   ${minutes + ' ' + 'minutes'}
-    Mile fare:          ${'$ ' + milesFare}
-    Minute fare         ${'$ ' + minuteFare}
+    Mile fare:          ${'$ ' + uberModel.milesFare}
+    Minute fare         ${'$ ' + uberModel.minuteFare}
     
-    Total Mile fare:    ${'$ ' + Math.round(milesFare * miles) + ' (Miles to drive x Miles fare)'}
-    Total Minute fare   ${'$ ' + Math.round(minuteFare * minutes) + ' (Minutes to drive x Minute fare)'}
+    Total Mile fare:    ${'$ ' + Math.round(uberModel.milesFare * miles) + ' (Miles to drive x Miles fare)'}
+    Total Minute fare   ${'$ ' + Math.round(uberModel.minuteFare * minutes) + ' (Minutes to drive x Minute fare)'}
     
-    Minimum fare:       ${'$ ' + minimumFare}
-    Booking fee:        ${'$ ' + bookingFee}
+    Minimum fare:       ${'$ ' + uberModel.minimumFare}
+    Booking fee:        ${'$ ' + uberModel.bookingFee}
     
     TOTAL:              ${'$ ' + Math.round(result)}
     `)
@@ -97,18 +97,18 @@ function uberPrice(rideType, minimumFare, baseFare, milesFare, minuteFare, booki
 // A
 // Call the function with arguments
 // Assign the value that is returned to a variable
-const priceA = uberPrice(a.rideType, a.minimumFare, a.baseFare, a.milesFare, a.minuteFare, a.bookingFee, drivingMinutes, drivingMiles)
+const priceA = uberPrice(a, drivingMinutes, drivingMiles)
 
 // B
 // Call the function with arguments
 // Assign the value that is returned to a variable
-const priceB = uberPrice(b.rideType, b.minimumFare, b.baseFare, b.milesFare, b.minuteFare, b.bookingFee, drivingMinutes, drivingMiles)
+const priceB = uberPrice(b, drivingMinutes, drivingMiles)
 
 
 // C
 // Call the function with arguments
 // Assign the value that is returned to a variable
-const priceC = uberPrice(c.rideType, c.minimumFare, c.baseFare, c.milesFare, c.minuteFare, c.bookingFee, drivingMinutes, drivingMiles)
+const priceC = uberPrice(c, drivingMinutes, drivingMiles)
 
 if (!drivingMiles) {
     console.log("Error: You forgot to fill in the amount of Miles to drive")
