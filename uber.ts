@@ -26,9 +26,18 @@ const drivingMinutes = process.argv[3] // user input 11
 // console.logging the values so we can see some output
 console.log(process.argv);
 
-// Rates 
+// Rates and object types
 
-const a = {
+interface UberModel {
+    rideType: string;
+    milesFare: number;
+    minuteFare: number;
+    baseFare: number;
+    bookingFee: number;
+    minimumFare: number;
+}
+
+const a: UberModel = {
     rideType: 'Uber Pool',
     milesFare: 0.80,
     minuteFare: 0.28,
@@ -37,7 +46,7 @@ const a = {
     minimumFare: 0
 };
 
-const b = {
+const b: UberModel = {
     rideType: 'Uber X',
     milesFare: 0.80,
     minuteFare: 0.28,
@@ -46,7 +55,7 @@ const b = {
     minimumFare: 6.50
 };
 
-const c = {
+const c: UberModel = {
     rideType: 'Uber Comfort',
     milesFare: 0.92,
     minuteFare: 0.38,
@@ -58,7 +67,7 @@ const c = {
 // Declaring the function with parameter list
 // Including if statement
 
-function uberPrice(uberModel, minutes, miles) {
+function uberPrice(uberModel: UberModel, minutes, miles) {
     let result = (uberModel.baseFare + (uberModel.milesFare * miles) + (uberModel.minuteFare * minutes) + uberModel.bookingFee);
 
     if (result < uberModel.minimumFare) {

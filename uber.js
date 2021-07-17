@@ -20,7 +20,6 @@ var drivingMiles = process.argv[2]; // user input 2.3
 var drivingMinutes = process.argv[3]; // user input 11
 // console.logging the values so we can see some output
 console.log(process.argv);
-// Rates 
 var a = {
     rideType: 'Uber Pool',
     milesFare: 0.80,
