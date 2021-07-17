@@ -87,16 +87,16 @@ function uberPrice(uberModel: UberModel, minutes: number, miles: number) {
 
     Miles to drive:     ${miles} miles 
     Minutes to drive:   ${minutes} minutes
-    Mile fare:          \$ ${uberModel.milesFare}
-    Minute fare         \$ ${uberModel.minuteFare}
+    Mile fare:          \$ ${Number(uberModel.milesFare).toFixed(2)}
+    Minute fare         \$ ${Number(uberModel.minuteFare).toFixed(2)}
     
-    Total Mile fare:    \$ ${Math.round(uberModel.milesFare * miles)} (Miles to drive x Miles fare)
-    Total Minute fare   \$ ${Math.round(uberModel.minuteFare * minutes)} (Minutes to drive x Minute fare)
+    Total Mile fare:    \$ ${Number(uberModel.milesFare * miles).toFixed(2)} (Miles to drive x Miles fare)
+    Total Minute fare   \$ ${Number(uberModel.minuteFare * minutes).toFixed(2)} (Minutes to drive x Minute fare)
     
-    Minimum fare:       \$ ${uberModel.minimumFare}
-    Booking fee:        \$ ${uberModel.bookingFee}
+    Minimum fare:       \$ ${Number(uberModel.minimumFare).toFixed(2)}
+    Booking fee:        \$ ${Number(uberModel.bookingFee).toFixed(2)}
     
-    TOTAL:              \$ ${Math.round(result)}
+    TOTAL:              \$ ${Number(result).toFixed(2)}
     `)
 
     return result;
