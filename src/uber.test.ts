@@ -11,5 +11,6 @@ test('pool matches example', () => {
         minimumFare: 0
     }
     const price = uberPrice(uberPool, 2.3, 11)
+    expect(price).toBeGreaterThan(7);
     expect(price).toBeLessThan(9);
 });
