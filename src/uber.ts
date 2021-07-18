@@ -4,10 +4,6 @@ Build an Uber far estimator. Uber has a dynamic pricing algorithm.
 Can you reverse engineer it using this article? https://www.ridesharingdriver.com/how-much-does-uber-cost-uber-fare-estimator 
 */
 
-// Inputs of the user are stored in two variables.
-const drivingMiles = Number(process.argv[2]) // user input 2.3 miles
-const drivingMinutes = Number(process.argv[3]) // user input 11 minutes
-
 // English error messages.
 const errorMessage = {
     forgotMiles: 'Error: You forgot to fill in the amount of Miles to drive',
@@ -17,14 +13,14 @@ const errorMessage = {
 }
 
 // Checks the user input and logs error messages based on the available user input. Exits program if one or more of the user inputs is not available.
-function checkInput(minutes: number, miles: number) {
-    if (!drivingMinutes && !drivingMiles) {
+export function checkInput(miles: number, minutes: number) {
+    if (!miles && !minutes) {
         console.log(errorMessage.forgotMilesMinutes)
         process.exit(1)
-    } else if (!drivingMiles) {
+    } else if (!miles) {
         console.log(errorMessage.forgotMiles);
         process.exit(1)
-    } else if (!drivingMinutes) {
+    } else if (!minutes) {
         console.log(errorMessage.forgotMinutes);
         process.exit(1)
     } else {
@@ -32,10 +28,8 @@ function checkInput(minutes: number, miles: number) {
     }
 }
 
-checkInput(drivingMiles, drivingMinutes)
-
 // An UberModel object defines the pricing parameters of an Uber ride type. 
-interface UberModel {
+export interface UberModel {
     rideType: string;
     milesFare: number;
     minuteFare: number;
@@ -44,7 +38,7 @@ interface UberModel {
     minimumFare: number;
 }
 
-const uberModels: Array<UberModel> = [
+export const uberModels: Array<UberModel> = [
     {
         rideType: 'Uber Pool',
         milesFare: 0.80,
@@ -80,7 +74,7 @@ const uberModels: Array<UberModel> = [
 ]
 
 // The uberPrice function calculates the estimated price via the new formula and prints the Uber receipt.
-function uberPrice(uberModel: UberModel, minutes: number, miles: number) {
+export function uberPrice(uberModel: UberModel, miles: number, minutes: number) {
     let result = uberModel.baseFare + (uberModel.milesFare * miles) + (uberModel.minuteFare * minutes) + uberModel.bookingFee;
 
     if (result < uberModel.minimumFare) {
@@ -108,9 +102,4 @@ function uberPrice(uberModel: UberModel, minutes: number, miles: number) {
     `)
 
     return result;
-}
-
-// Prints the Uber receipts per Uber Model.
-for (const uberModel of uberModels) {
-    uberPrice(uberModel, drivingMinutes, drivingMiles)
 }
