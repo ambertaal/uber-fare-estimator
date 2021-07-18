@@ -81,25 +81,24 @@ export function uberPrice(uberModel: UberModel, miles: number, minutes: number) 
         result = uberModel.minimumFare;
     }
 
-    console.log(`
-    ******************
-    Your Uber receipt
-    ******************
-    Ride type:          ${uberModel.rideType}
+    const bonnetje = `
+******************
+Your Uber receipt
+******************
+Ride type:          ${uberModel.rideType}
 
-    Miles to drive:     ${miles} miles 
-    Minutes to drive:   ${minutes} minutes
-    Mile fare:          \$ ${Number(uberModel.milesFare).toFixed(2)}
-    Minute fare         \$ ${Number(uberModel.minuteFare).toFixed(2)}
-    
-    Total Mile fare:    \$ ${Number(uberModel.milesFare * miles).toFixed(2)} (Miles to drive x Miles fare)
-    Total Minute fare   \$ ${Number(uberModel.minuteFare * minutes).toFixed(2)} (Minutes to drive x Minute fare)
-    
-    Minimum fare:       \$ ${Number(uberModel.minimumFare).toFixed(2)}
-    Booking fee:        \$ ${Number(uberModel.bookingFee).toFixed(2)}
-    
-    TOTAL:              \$ ${Number(result).toFixed(2)}
-    `)
+Miles to drive:     ${miles} miles 
+Minutes to drive:   ${minutes} minutes
+Mile fare:          \$ ${Number(uberModel.milesFare).toFixed(2)}
+Minute fare         \$ ${Number(uberModel.minuteFare).toFixed(2)}
 
-    return result;
+Total Mile fare:    \$ ${Number(uberModel.milesFare * miles).toFixed(2)} (Miles to drive x Miles fare)
+Total Minute fare   \$ ${Number(uberModel.minuteFare * minutes).toFixed(2)} (Minutes to drive x Minute fare)
+
+Minimum fare:       \$ ${Number(uberModel.minimumFare).toFixed(2)}
+Booking fee:        \$ ${Number(uberModel.bookingFee).toFixed(2)}
+
+TOTAL:              \$ ${Number(result).toFixed(2)}
+`
+    return { total: result, receipt: bonnetje };
 }

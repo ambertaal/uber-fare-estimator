@@ -6,7 +6,7 @@ const drivingMinutes = Number(process.argv[3]) // user input 11 minutes
 
 checkInput(drivingMiles, drivingMinutes)
 
-// Prints the Uber receipts per Uber Model.
+// Prints the Uber receipts per Uber Model. 
 for (const uberModel of uberModels) {
-    uberPrice(uberModel, drivingMiles, drivingMinutes)
+    console.log(uberPrice(uberModel, drivingMiles, drivingMinutes).receipt)
 }

@@ -10,7 +10,13 @@ test('pool matches example', () => {
         bookingFee: 2.30,
         minimumFare: 0
     }
-    const price = uberPrice(uberPool, 2.3, 11)
+
+    /*
+    Getting the field "total" from the object "uberPrice(uberPool, 2.3, 11)", 
+    which is the object returned by the function "uberPrice" 
+    when called with parameters "uberPool", "2.3" and "11".
+    */
+    const price = uberPrice(uberPool, 2.3, 11).total
     expect(price).toBeGreaterThan(7);
     expect(price).toBeLessThan(9);
 });
